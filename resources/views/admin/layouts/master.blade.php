@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <meta name="_token" content="{{ csrf_token() }}">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>General Dashboard &mdash; Stisla</title>
 
   <!-- General CSS Files -->
@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
   <link rel="stylesheet" href="{{asset('backend/assets/css/boostrap-iconpicker.min.css')}}">
+  <link rel="stylesheet" href="{{asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.css')}}">
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{asset('backend/assets/css/style.css')}}">
@@ -80,6 +81,7 @@
   <script src="//cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="{{asset('backend/assets/js/bootstrap-iconpicker.bundle.min.js')}}"></script>
+  <script src="{{ asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"
   <!-- Page Specific JS File -->
   <script src="{{ asset('backend/assets/js/page/index-0.js')}}"></script>
   
@@ -132,7 +134,8 @@
               }else if(data.status=='error'){
                 Swal.fire(
                   'Cant Delete',
-                  data.message
+                  data.message,
+                  'error'
                 )
               }
               

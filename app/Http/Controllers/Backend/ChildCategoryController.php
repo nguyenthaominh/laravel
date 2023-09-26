@@ -112,4 +112,11 @@ class ChildCategoryController extends Controller
         $childCategory->delete();
         return response(['status'=>'success','message'=>'Deleted Successfully!']);
     }
+    public function changeStatus(Request $request ){
+        $category= ChildCategory::findOrFail($request->id);
+        $category->status = $request->status == 'true' ? 1 : 0;
+        $category->save();
+        
+        return response(['message'=>'Status has been updated']);
+    }
 }
