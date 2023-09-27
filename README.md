@@ -1,9 +1,9 @@
 #PHIẾU ĐĂNG KÝ
--Thông tin sinh viên: Nguyễn Thảo Minh
--Thông tin đề tại: Website bán hàng TMĐT
--Công nghệ: Laravel
+#Thông tin sinh viên: Nguyễn Thảo Minh
+#Thông tin đề tài: Website bán hàng TMĐT
+#Công nghệ: Laravel
 
-Kế hoạch: 
+#Kế hoạch: 
 #Tuần 1: Ngày bắt đầu 06/09/2023 ngày kết thúc 12/09/2023 (push)
 -	Thiết kế CSDL
   
