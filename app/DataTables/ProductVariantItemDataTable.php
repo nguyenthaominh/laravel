@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Product;
+use App\Models\ProductVariantItem;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ProductDataTable extends DataTable
+class ProductVariantItemDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -23,42 +23,11 @@ class ProductDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                $editBtn="<a href='".route('admin.products.edit',$query->id)."' class='btn btn-primary'><i class='far fa-edit'></i></a>";
-                $deleteBtn="<a href='".route('admin.products.destroy',$query->id)."' class='btn btn-danger ml-2 delete-item'> <i class='fas fa-trash-alt'></i></a>";
-                $moreBtn='<div class="dropdown dropleft d-inline">
-                <button class="btn btn-primary dropdown-toggle ml-1" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-cog"></i>
-                </button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item has-icon" href="'.route('admin.products-image-gallery.index',['product'=>$query->id]).'"><i class="far fa-heart"></i> Image Gallery</a>
-                  <a class="dropdown-item has-icon" href="'.route('admin.products-variant.index',['product'=>$query->id]).'"><i class="far fa-file"></i> Variants</a>
-                </div>
-              </div>';
 
-                return $editBtn.$deleteBtn.$moreBtn;
-            })
-            ->addColumn('image',function($query){
-                return $img="<img width='70px' src='".asset($query->thumb_image)."'></img>";
-            })
-            ->addColumn('type',function($query){
-                switch ($query->product_type) {
-                    case 'new_arrival':
-                        return '<i class="badge badge-success">New Arrival</i>';
-                        break;
-                    case 'featured_product':
-                        return '<i class="badge badge-warning">Featured Product</i>';
-                        break;
-                    case 'top_product':
-                        return '<i class="badge badge-info">Top Product</i>';
-                        break;
-                    case 'best_product':
-                        return '<i class="badge badge-danger">Top Product</i>';
-                        break;
-                    
-                    default:
-                        return '<i class="badge badge-dark">None</i>';
-                        break;
-                }
+                $editBtn="<a href='".route('admin.products-variant-item.edit',$query->id)."' class='btn btn-primary'><i class='far fa-edit'></i></a>";
+                $deleteBtn="<a href='".route('admin.products-variant-item.destroy',$query->id)."' class='btn btn-danger ml-2 delete-item'> <i class='fas fa-trash-alt'></i></a>";
+
+                return  $editBtn.$deleteBtn;
             })
             ->addColumn('status',function($query){
                 if($query->status ==1){
@@ -74,18 +43,30 @@ class ProductDataTable extends DataTable
                         <span class="custom-switch-indicator"></span>
                         </label>';
                 }
+              
                 return $button;
             })
-            ->rawColumns(['image','type','status','action'])
+            ->addColumn('is_default',function($query){
+                if($query->is_default==1){
+                    return '<i class="badge badge-success">Default</i>';
+                }else{
+                    return '<i class="badge badge-danger">No</i>';
+                }
+            })
+            ->addColumn('variant_name',function($query){
+                return $query->productVariant->name;
+
+            })
+            ->rawColumns(['status','action','is_default'])
             ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(Product $model): QueryBuilder
+    public function query(ProductVariantItem $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->where('product_variant_id',request()->variantId)->newQuery();
     }
 
     /**
@@ -94,11 +75,11 @@ class ProductDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('product-table')
+                    ->setTableId('productvariantitem-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
-                    ->orderBy(1)
+                    ->orderBy(0)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
@@ -116,12 +97,11 @@ class ProductDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            
             Column::make('id'),
-            Column::make('image'),
             Column::make('name'),
+            Column::make('variant_name'),
             Column::make('price'),
-            Column::make('type')->width('150'),
+            Column::make('is_default'),
             Column::make('status'),
             Column::computed('action')
                   ->exportable(false)
@@ -136,6 +116,6 @@ class ProductDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Product_' . date('YmdHis');
+        return 'ProductVariantItem_' . date('YmdHis');
     }
 }
