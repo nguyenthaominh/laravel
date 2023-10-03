@@ -25,9 +25,14 @@
 -	Xây dựng chức năng trang người dùng:
 + Chỉnh sửa thông tin người dùng ( hình ảnh, tên, email, password) 
 <h5>Tuần 4: Ngày bắt đầu 27/09/2023 ngày kết thúc 03/10/2023 (push)</h5>
+-	Xây dựng chức năng trang người dùng:
++ Đưa danh mục ra giao diện người dùng.
 -	Xây dựng chức năng trang admin
++ Quản lý sản phẩm: 
+    .Tạo kho chứa nhiều hình ảnh cho từng sản phẩm
+    .Tạo chỗ ghi màu sắc và kích cỡ cho từng sản phẩm
 <h5>Tuần 5: Ngày bắt đầu 04/10/2023 ngày kết thúc 10/10/2023 (push)</h5>
--	Thiết kế giao diện
+-	Xây dựng chức năng trang admin
 <h5>Tuần 6: Ngày bắt đầu 11/10/2023 ngày kết thúc 17/10/2023 (push)</h5>
 -	Xây dựng chức năng trang người dùng
 <h5>Tuần 7: Ngày bắt đầu 17/10/2023 ngày kết thúc 24/10/2023 (push)</h5>
