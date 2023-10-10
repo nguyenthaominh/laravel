@@ -26,7 +26,7 @@ class VendorProductDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
                 $editBtn="<a href='".route('vendor.products.edit',$query->id)."' class='btn btn-primary'><i class='far fa-edit'></i></a>";
-                $deleteBtn="<a href='".route('admin.products.destroy',$query->id)."' class='btn btn-danger delete-item'> <i class='fas fa-trash-alt'></i></a>";
+                $deleteBtn="<a href='".route('vendor.products.destroy',$query->id)."' class='btn btn-danger delete-item'> <i class='fas fa-trash-alt'></i></a>";
             $moreBtn='<div class="btn-group dropstart" style="margin-left:3px">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fas fa-cog"></i>
@@ -76,7 +76,14 @@ class VendorProductDataTable extends DataTable
                 }
                 return $button;
             })
-            ->rawColumns(['image','type','status','action'])
+            ->addColumn('approved',function($query){
+                if($query->is_approved==1){
+                    return '<i class="badge bg-success">Approved</i>';
+                }else{
+                    return '<i class="badge bg-warning">Pending</i>';
+                }
+            })
+            ->rawColumns(['image','type','status','action','approved'])
             ->setRowId('id');
     }
 
@@ -120,6 +127,7 @@ class VendorProductDataTable extends DataTable
             Column::make('image')->width(150),
             Column::make('name'),
             Column::make('price'),
+            Column::make('approved'),
             Column::make('type')->width('150'),
             Column::make('status'),
             Column::computed('action')

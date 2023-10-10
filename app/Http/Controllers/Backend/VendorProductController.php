@@ -9,6 +9,8 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Models\SubCategory;
 use App\Models\ChildCategory;
+use App\Models\ProductImageGallery;
+use App\Models\ProductVariant;
 use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -171,8 +173,41 @@ class VendorProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product= Product::findOrFail($id);
+        if($product->vendor_id!=Auth::user()->vendor->id){
+            abort(404);
+        }
+
+
+        /** Delete the main product image */
+        $this->deleteImage($product->thumb_image);
+
+        /** Delete the main product images */
+        $galleryImages=ProductImageGallery::where('product_id',$product->id)->get();
+        foreach($galleryImages as $image){
+            $this->deleteImage($image->image);
+            $image->delete();
+        }
+        /** Delete product variants if exist */
+        $variants= ProductVariant::where('product_id',$product->id)->get();
+
+        foreach($variants as $variant){
+           $variant->productVariantItems()->delete();
+           $variant->delete();
+        }
+        $product->delete();
+        return response(['status'=>'success','message'=>'Deleted Successfully!']);
     }
+    public function changeStatus(Request $request)
+    {
+        $product= Product::findOrFail($request->id);
+        $product->status = $request->status == 'true' ? 1 : 0;
+        $product->save();
+       
+       return response(['message'=>'Status has been updated']);
+    }
+
+
     
     /** Get all product sub categories */
     public function getSubCategories(Request $request)
