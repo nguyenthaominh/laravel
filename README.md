@@ -43,6 +43,7 @@
 -	Xây dựng chức năng trang người dùng:
 + Hiển thị bộ đếm giờ sale
 + Hiển thị sản phẩm đang sale ( % giảm, số tiền sale)
++ Trang các sản phẩm đang sale
 <h5>Tuần 6: Ngày bắt đầu 11/10/2023 ngày kết thúc 17/10/2023 (push)</h5>
 -	Xây dựng chức năng trang người dùng
 <h5>Tuần 7: Ngày bắt đầu 17/10/2023 ngày kết thúc 24/10/2023 (push)</h5>
