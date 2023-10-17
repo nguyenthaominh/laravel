@@ -2,7 +2,8 @@
 
 namespace App\DataTables;
 
-use App\Models\ProductVariant;
+use App\Models\GeneralSetting;
+use App\Models\ShippingRule;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,8 +13,13 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ProductVariantDataTable extends DataTable
+class ShippingRuleDataTable extends DataTable
 {
+    protected $currencyIcon = '';
+    public function __construct()
+    {
+        $this->currencyIcon=GeneralSetting::first()->currency_icon;
+    }
     /**
      * Build the DataTable class.
      *
@@ -23,11 +29,11 @@ class ProductVariantDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                $veriantItems="<a href='".route('admin.products-variant-item.index',['productId'=>request()->product,'variantId'=>$query->id])."' class='btn btn-info mr-2'><i class='far fa-edit'></i> Variant Items</a>";
-                $editBtn="<a href='".route('admin.products-variant.edit',$query->id)."' class='btn btn-primary'><i class='far fa-edit'></i></a>";
-                $deleteBtn="<a href='".route('admin.products-variant.destroy',$query->id)."' class='btn btn-danger ml-2 delete-item'> <i class='fas fa-trash-alt'></i></a>";
+                $editBtn="<a href='".route('admin.shipping-rule.edit',$query->id)."' class='btn btn-primary'><i class='far fa-edit'></i></a>";
+                $deleteBtn="<a href='".route('admin.shipping-rule.destroy',$query->id)."' class='btn btn-danger ml-2 delete-item'> <i class='fas fa-trash-alt'></i></a>";
+                
+                return $editBtn.$deleteBtn;
 
-                return  $veriantItems.$editBtn.$deleteBtn;
             })
             ->addColumn('status',function($query){
                 if($query->status ==1){
@@ -43,19 +49,37 @@ class ProductVariantDataTable extends DataTable
                         <span class="custom-switch-indicator"></span>
                         </label>';
                 }
-              
                 return $button;
             })
-            ->rawColumns(['status','action'])
+            ->addColumn('type',function($query){
+                if($query->type=='min_cost'){
+                    return '<i class="badge badge-primary"> Mininum Order Amount</i>';
+                }else{
+                    return '<i class="badge badge-success">Flate Amount</i>';
+                }
+            })
+            ->addColumn('min_cost',function($query){
+                if($query->type=='min_cost'){
+                    return $this->currencyIcon.$query->min_cost;
+                }else{
+                    return $this->currencyIcon.'0';
+                }
+            })
+            ->addColumn('cost',function($query){
+                
+                    return $this->currencyIcon.$query->cost;
+                
+            })
+            ->rawColumns(['status','action','type'])
             ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(ProductVariant $model): QueryBuilder
+    public function query(ShippingRule $model): QueryBuilder
     {
-        return $model->where('product_id',request()->product)->newQuery();
+        return $model->newQuery();
     }
 
     /**
@@ -64,11 +88,11 @@ class ProductVariantDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('productvariant-table')
+                    ->setTableId('shippingrule-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
-                    ->orderBy(0)
+                    ->orderBy(1)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
@@ -85,14 +109,17 @@ class ProductVariantDataTable extends DataTable
      */
     public function getColumns(): array
     {
-        return [ 
-            Column::make('id')->width(80),
+        return [
+            Column::make('id'),
             Column::make('name'),
+            Column::make('type'),
+            Column::make('min_cost'),
+            Column::make('cost'),
             Column::make('status'),
             Column::computed('action')
             ->exportable(false)
             ->printable(false)
-            ->width(400)
+            ->width(60)
             ->addClass('text-center'),
         ];
     }
@@ -102,6 +129,6 @@ class ProductVariantDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'ProductVariant_' . date('YmdHis');
+        return 'ShippingRule_' . date('YmdHis');
     }
 }

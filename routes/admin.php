@@ -8,12 +8,17 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\FlashSaleController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductImageGalleryController;
 use App\Http\Controllers\Backend\ProductVariantController;
 use App\Http\Controllers\Backend\ProductVariantItemController;
 use App\Http\Controllers\Backend\SellerProductController;
+use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\ShippingRuleController;
 use App\Models\ChildCategory;
+use App\Models\FlashSale;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -74,4 +79,22 @@ Route::get('seller-products',[SellerProductController::class,'index'])->name('se
 Route::get('seller-pending-products',[SellerProductController::class,'pendingProducts'])->name('seller-pending-products.index');
 Route::put('change-approve-status',[SellerProductController::class,'changeApproveStatus'])->name('change-approve-status');
 
+/** Flash sale routes */
+Route::get('flash-sale',[FlashSaleController::class,'index'])->name('flash-sale.index');
+Route::put('flash-sale',[FlashSaleController::class,'update'])->name('flash-sale.update');
+Route::post('flash-sale/add-product',[FlashSaleController::class,'addProduct'])->name('flash-sale.add-product');
+Route::put('flash-sale/show-at-home/status-change',[FlashSaleController::class,'changeShowAtHomeStatus'])->name('flash-sale.show-at-home.change-status');
+Route::put('flash-sale-status',[FlashSaleController::class,'changeStatus'])->name('flash-sale-status');
+Route::delete('flash-sale/{id}',[FlashSaleController::class,'destroy'])->name('flash-sale.destroy');
 
+/** Coupon Routes */
+Route::put('coupons/change-status', [CouponController::class, 'changeStatus'])->name('coupons.change-status');
+Route::resource('coupons', CouponController::class);
+
+/** Shipping rulr */
+Route::put('shipping-rule/change-status', [ShippingRuleController::class, 'changeStatus'])->name('shipping-rule.change-status');
+Route::resource('shipping-rule', ShippingRuleController::class);
+
+/** Settings routes */
+Route::get('settings',[SettingController::class,'index'])->name('setting.index');
+Route::put('generale-setting-update',[SettingController::class,'generalSettingUpdate'])->name('generale-setting-update');
