@@ -1,5 +1,7 @@
 @extends('frontend.dashboard.layouts.master')
-
+@section('title')
+{{ $settings->size_name }} || Profile
+@endsection
 @section('content')
  <!--=============================
     DASHBOARD START

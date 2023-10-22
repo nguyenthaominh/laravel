@@ -1,5 +1,7 @@
 @extends('frontend.dashboard.layouts.master')
-
+@section('title')
+{{ $settings->size_name }} || Dashboard
+@endsection
 @section('content')
 <section id="wsus__dashboard">
   <div class="container-fluid">

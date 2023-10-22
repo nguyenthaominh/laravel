@@ -1,5 +1,7 @@
 @extends('vendor.layouts.master')
-
+@section('title')
+{{ $settings->size_name }} || Shop Profile
+@endsection
 @section('content')
  <!--=============================
     DASHBOARD START

@@ -151,7 +151,7 @@
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
           confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
+          }).then((result) => {
           if (result.isConfirmed) {
             $.ajax({
               type:'DELETE',
@@ -161,7 +161,8 @@
                 if(data.status=='success'){
                   Swal.fire(
                 'Deleted!',
-                data.message
+                data.message,
+                'success'
                 )
                 window.location.reload();
               }else if(data.status=='error'){
