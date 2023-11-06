@@ -4,7 +4,7 @@
       <!-- Main Content -->
         <section class="section">
           <div class="section-header">
-            <h1>Shipping Rule</h1>
+            <h1>Phương thức vận chuyển</h1>
           </div>
 
           <div class="section-body">

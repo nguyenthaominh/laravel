@@ -12,11 +12,11 @@
           <div class="container">
               <div class="row">
                   <div class="col-12">
-                      <h4>cart View</h4>
+                      <h4>Giỏ hàng</h4>
                       <ul>
-                          <li><a href="#">home</a></li>
-                          <li><a href="#">peoduct</a></li>
-                          <li><a href="#">cart view</a></li>
+                          <li><a href="{{ route('home') }}">Trang chủ</a></li>
+                          <li><a href="#">Sản phẩm</a></li>
+                          <li><a href="#">Giỏ hàng</a></li>
                       </ul>
                   </div>
               </div>
@@ -41,27 +41,27 @@
                               <tbody>
                                   <tr class="d-flex">
                                       <th class="wsus__pro_img">
-                                          product item
+                                          Hình ảnh
                                       </th>
 
                                       <th class="wsus__pro_name">
-                                          product details
+                                          Tên sản phẩm
                                       </th>
                                       <th class="wsus__pro_tk">
-                                        price
+                                        Giá
                                     </th>
                                     <th class="wsus__pro_tk">
-                                      total
+                                      Thành Tiền
                                   </th>
 
                                       <th class="wsus__pro_select">
-                                          quantity
+                                          Số lượng
                                       </th>
 
 
 
                                       <th class="wsus__pro_icon">
-                                          <a href="#" class="common_btn clear-cart">clear cart</a>
+                                          <a href="#" class="common_btn clear-cart">Xóa giỏ hàng</a>
                                       </th>
                                   </tr>
                                   @foreach ($cartItems as $item )
@@ -109,9 +109,9 @@
               </div>
               <div class="col-xl-3">
                   <div class="wsus__cart_list_footer_button" id="sticky_sidebar">
-                      <h6>total cart</h6>
-                      <p>subtotal: <span id="sub_total">{{ $settings->currency_icon}}{{ getCartTotal()}}</span></p>
-                      <p>coupon(-): <span id="discount">{{ $settings->currency_icon }}{{ getCartDiscount() }}</span></p>
+                      <h6>Tổng giỏ hàng</h6>
+                      <p>Tổng tiền: <span id="sub_total">{{ $settings->currency_icon}}{{ getCartTotal()}}</span></p>
+                      <p>Giảm giá(-): <span id="discount">{{ $settings->currency_icon }}{{ getCartDiscount() }}</span></p>
                       <p class="total"><span>total:</span> <span id="cart_total">{{ $settings->currency_icon }}{{ getMainCartTotal() }}</span></p>
 
                       <form id="coupon_form">
@@ -126,7 +126,7 @@
           </div>
       </div>
   </section>
-  <section id="wsus__single_banner">
+  {{-- <section id="wsus__single_banner">
       <div class="container">
           <div class="row">
               <div class="col-xl-6 col-lg-6">
@@ -155,7 +155,7 @@
               </div>
           </div>
       </div>
-  </section>
+  </section> --}}
   <!--============================
         CART VIEW PAGE END
   ==============================-->

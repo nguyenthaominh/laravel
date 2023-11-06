@@ -16,7 +16,7 @@
             <h3><i class="far fa-user"></i> profile</h3>
             <div class="wsus__dashboard_profile">
               <div class="wsus__dash_pro_area">
-                <h4>basic information</h4>
+                <h4>Thông tin cơ bản</h4>
                  
                     <form action="{{ route('user.profile.update') }}" method="POST" enctype="multipart/form-data">
                       @csrf
@@ -57,23 +57,23 @@
                     <form action="{{ route('user.profile.update.password')}}" method="POST">
                       @csrf
                       <div class="row">
-                        <h4>Update Password</h4>
+                        <h4>Cập nhập mật khẩu</h4>
                         <div class="col-xl-4 col-md-6">
                           <div class="wsus__dash_pro_single">
                             <i class="fas fa-unlock-alt"></i>
-                            <input type="password" placeholder="Current Password" name="current_password">
+                            <input type="password" placeholder="Mật khẩu hiện tại" name="current_password">
                           </div>
                         </div>
                         <div class="col-xl-4 col-md-6">
                           <div class="wsus__dash_pro_single">
                             <i class="fas fa-lock-alt"></i>
-                            <input type="password" placeholder="New Password" name="password">
+                            <input type="password" placeholder="Mật khẩu mới" name="password">
                           </div>
                         </div>
                         <div class="col-xl-4">
                           <div class="wsus__dash_pro_single">
                             <i class="fas fa-lock-alt"></i>
-                            <input type="password" placeholder="Confirm Password" name="password_confirmation">
+                            <input type="password" placeholder="Xác nhận mật khẩu" name="password_confirmation">
                           </div>
                         </div>
                         <div class="col-xl-12">

@@ -16,7 +16,7 @@
                 <div class="row">
                   <div class="col-xl-6 col-md-6">
                     <div class="wsus__add_address_single">
-                      <label>name <b>*</b></label>
+                      <label>Tên <b>*</b></label>
                       <input type="text" placeholder="Name" name="name" value="{{$address->name}}">
                     </div>
                   </div>
@@ -28,13 +28,13 @@
                   </div>
                   <div class="col-xl-6 col-md-6">
                     <div class="wsus__add_address_single">
-                      <label>phone <b>*</b></label>
+                      <label>Điện thoại <b>*</b></label>
                       <input type="text" placeholder="Phone" name="phone" value="{{$address->phone}}">
                     </div>
                   </div>
                   <div class="col-xl-6 col-md-6">
                     <div class="wsus__add_address_single">
-                      <label>countery <b>*</b></label>
+                      <label>Quốc gia <b>*</b></label>
                       <div class="wsus__topbar_select">
                         <select class="select_2" name="country">
                           <option>Select</option>
@@ -48,14 +48,14 @@
 
                   <div class="col-xl-6 col-md-6">
                     <div class="wsus__add_address_single">
-                      <label>State <b>*</b></label>
+                      <label>Quận <b>*</b></label>
                       <input type="text" placeholder="State" name="state" value="{{$address->state}}">
                     </div>
                   </div>
 
                   <div class="col-xl-6 col-md-6">
                     <div class="wsus__add_address_single">
-                      <label>City <b>*</b></label>
+                      <label>Thành phố <b>*</b></label>
                       <input type="text" placeholder="City" name="city" value="{{$address->city}}">
                     </div>
                   </div>
@@ -70,7 +70,7 @@
 
                   <div class="col-xl-6 col-md-6">
                     <div class="wsus__add_address_single">
-                      <label>Address <b>*</b></label>
+                      <label>Địa chỉ <b>*</b></label>
                       <input type="text" placeholder="Address" name="address" value="{{$address->address}}">
                     </div>
                   </div>

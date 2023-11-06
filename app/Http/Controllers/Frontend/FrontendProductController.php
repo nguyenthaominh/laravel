@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class FrontendProductController extends Controller
 {
+    public function productsIndex(Request $request)
+    {
+        return view('frontend.pages.product');
+    }
     /** Show product detail page */
     public function showProduct(string $slug)
     {

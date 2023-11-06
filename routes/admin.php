@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\FlashSaleController;
+use App\Http\Controllers\Backend\HomePageSettingController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\PaymentSettingController;
 use App\Http\Controllers\Backend\PaypalSettingController;
@@ -117,10 +118,18 @@ Route::resource('shipping-rule', ShippingRuleController::class);
 Route::get('settings',[SettingController::class,'index'])->name('setting.index');
 Route::put('generale-setting-update',[SettingController::class,'generalSettingUpdate'])->name('generale-setting-update');
 
+/** home page setting route */
+Route::get('home-page-setting', [HomePageSettingController::class, 'index'])->name('home-page-setting');
+Route::put('popular-category-section', [HomePageSettingController::class, 'updatePopularCategorySection'])->name('popular-category-section');
+
+Route::put('product-slider-section-one', [HomePageSettingController::class, 'updateProductSliderSectionOne'])->name('product-slider-section-one');
+Route::put('product-slider-section-two', [HomePageSettingController::class, 'updateProductSliderSectionTwo'])->name('product-slider-section-two');
+Route::put('product-slider-section-three', [HomePageSettingController::class, 'updateProductSliderSectionThree'])->name('product-slider-section-three');
+
 /** Payment settings routes */
 Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
 Route::resource('paypal-setting', PaypalSettingController::class);
-Route::put('stripe-setting/{id}', [StripeSettingController::class, 'update'])->name('stripe-setting.update');
-Route::put('razorpay-setting/{id}', [RazorpaySettingController::class, 'update'])->name('razorpay-setting.update');
-Route::put('cod-setting/{id}', [CodSettingController::class, 'update'])->name('cod-setting.update');
+// Route::put('stripe-setting/{id}', [StripeSettingController::class, 'update'])->name('stripe-setting.update');
+// Route::put('razorpay-setting/{id}', [RazorpaySettingController::class, 'update'])->name('razorpay-setting.update');
+// Route::put('cod-setting/{id}', [CodSettingController::class, 'update'])->name('cod-setting.update');
 

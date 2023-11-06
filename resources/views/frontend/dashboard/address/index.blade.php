@@ -13,16 +13,16 @@
               @foreach ($addresses as $address )
               <div class="col-xl-6">
                 <div class="wsus__dash_add_single">
-                  <h4>Billing Address</h4>
+                  <h4>Địa chỉ</h4>
                   <ul>
-                    <li><span>name :</span> {{ $address->name }}</li>
-                    <li><span>Phone :</span> {{ $address->phone }}</li>
+                    <li><span>Tên :</span> {{ $address->name }}</li>
+                    <li><span>Điện thoại:</span> {{ $address->phone }}</li>
                     <li><span>email :</span> {{ $address->email }}</li>
-                    <li><span>country :</span> {{ $address->country }}</li>
-                    <li><span>city :</span> {{ $address->state }}</li>
+                    <li><span>quốc gia :</span> {{ $address->country }}</li>
+                    <li><span>Thành phố :</span> {{ $address->state }}</li>
                     <li><span>zip code :</span> {{ $address->city }}</li>
-                    <li><span>company :</span> {{ $address->zip }}</li>
-                    <li><span>address :</span> {{ $address->address }}</li>
+                    <li><span>Tên công ty :</span> {{ $address->zip }}</li>
+                    <li><span>Địa chỉ :</span> {{ $address->address }}</li>
                   </ul>
                   <div class="wsus__address_btn">
                     <a href="{{ route('user.address.edit',$address->id) }}" class="edit"><i class="fal fa-edit"></i> edit</a>

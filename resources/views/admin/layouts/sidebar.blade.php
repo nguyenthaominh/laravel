@@ -13,7 +13,7 @@
       </li>
       <li class="menu-header">Starter</li>
       <li class="dropdown {{ setActive(['admin.category.*','admin.sub-category.*','admin.child-category']) }}">
-        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Categories</span></a>
+        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Quản lý danh mục</span></a>
         <ul class="dropdown-menu">
           <li><a class="{{ setActive(['admin.category.*']) }}" class="nav-link" href="{{ route('admin.category.index') }}">Category</a></li>
           <li><a class="{{ setActive(['admin.sub-category.*']) }}" class="nav-link" href="{{ route('admin.sub-category.index') }}">Sub Category</a></li>
@@ -28,9 +28,9 @@
         'admin.products.variant.*',
         'admin.products.variant-item.*'
         ]) }}">
-        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Product</span></a>
+        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Quản lý sản phẩm</span></a>
         <ul class="dropdown-menu">
-          <li><a class="{{ setActive(['admin.brand.*']) }}" class="nav-link" href="{{ route('admin.brand.index') }}">Brands</a></li>
+          <li><a class="{{ setActive(['admin.brand.*']) }}" class="nav-link" href="{{ route('admin.brand.index') }}">Thương hiệu</a></li>
           <li class="{{ setActive([
             'admin.products.*',
             'admin.products.image-gallery.*',
@@ -38,9 +38,9 @@
             'admin.products.variant-item.*',
             'admin.seller-products.*',
             'admin.seller-pending-products.*'
-            ]) }}"> <a class="nav-link" href="{{ route('admin.products.index') }}">Products</a></li>
-          <li><a class="{{ setActive(['admin.seller-products.*']) }}" class="nav-link" href="{{ route('admin.seller-products.index') }}">Seller Products</a></li>
-          <li><a class="{{ setActive(['admin.seller-pending-products.*']) }}" class="nav-link" href="{{ route('admin.seller-pending-products.index') }}">Seller Pending Products</a></li>
+            ]) }}"> <a class="nav-link" href="{{ route('admin.products.index') }}">Sản phẩm</a></li>
+          <li><a class="{{ setActive(['admin.seller-products.*']) }}" class="nav-link" href="{{ route('admin.seller-products.index') }}">Sản phẩm nhà bán hàng</a></li>
+          <li><a class="{{ setActive(['admin.seller-pending-products.*']) }}" class="nav-link" href="{{ route('admin.seller-pending-products.index') }}">Sản phẩm tạm dừng</a></li>
         </ul>
       </li>
       <li class="dropdown {{ setActive([
@@ -49,13 +49,13 @@
         'admin.shipping-rule.*',
         'admin.payment-settings.*',
         ]) }}">
-        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Ecommerce</span></a>
+        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Quản lý bán hàng</span></a>
         <ul class="dropdown-menu">
           <li class="{{ setActive(['admin.vendor-profile.*']) }}"><a class="nav-link" href="{{ route('admin.flash-sale.index') }}">Flash Sale</a></li>
-          <li class="{{ setActive(['admin.coupons.*']) }}"><a class="nav-link" href="{{ route('admin.coupons.index') }}">Coupons</a></li>
-          <li class="{{ setActive(['admin.shipping-rule.*']) }}"><a class="nav-link" href="{{ route('admin.shipping-rule.index') }}">Shipping Rule</a></li>
-          <li class="{{ setActive(['admin.vendor-profile.*']) }}"><a class="nav-link" href="{{ route('admin.vendor-profile.index') }}">Vendor Profile</a></li>
-          <li class="{{ setActive(['admin.payment-settings.*']) }}"><a class="nav-link" href="{{ route('admin.payment-settings.index') }}">Payment Settings</a></li>
+          <li class="{{ setActive(['admin.coupons.*']) }}"><a class="nav-link" href="{{ route('admin.coupons.index') }}">Phiếu giảm giá</a></li>
+          <li class="{{ setActive(['admin.shipping-rule.*']) }}"><a class="nav-link" href="{{ route('admin.shipping-rule.index') }}">Phương thức vận chuyển</a></li>
+          <li class="{{ setActive(['admin.vendor-profile.*']) }}"><a class="nav-link" href="{{ route('admin.vendor-profile.index') }}">Hồ sơ nhà bán hàng</a></li>
+          <li class="{{ setActive(['admin.payment-settings.*']) }}"><a class="nav-link" href="{{ route('admin.payment-settings.index') }}">Phương thức thanh toán</a></li>
         </ul>
       </li>
       <li
@@ -71,9 +71,9 @@
           'admin.canceled-orders',
       ]) }}">
       <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cart-plus"></i>
-          <span>Orders</span></a>
+          <span>Quản lý đơn hàng</span></a>
       <ul class="dropdown-menu">
-          <li class="{{ setActive(['admin.order.*']) }}"><a class="nav-link"href="{{ route('admin.order.index') }}">All Orders</a></li>
+          <li class="{{ setActive(['admin.order.*']) }}"><a class="nav-link"href="{{ route('admin.order.index') }}">Tất cả đơn hàng</a></li>
           {{-- <li class="{{ setActive(['admin.pending-orders']) }}"><a class="nav-link"href="{{ route('admin.pending-orders') }}">All Pending Orders</a></li>
           <li class="{{ setActive(['admin.processed-orders']) }}"><a class="nav-link"href="{{ route('admin.processed-orders') }}">All processed Orders</a></li>
           <li class="{{ setActive(['admin.dropped-off']) }}"><a class="nav-link" href="{{ route('admin.dropped-off-orders') }}">All Dropped Off Orders</a></li>
@@ -84,12 +84,13 @@
       </ul>
   </li>
       <li class="dropdown {{ setActive(['admin.slider.*']) }}" ">
-        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Website</span></a>
+        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Quản lý website</span></a>
         <ul class="dropdown-menu">
           <li><a class="{{ setActive(['admin.slider.*']) }}" class="nav-link" href="{{ route('admin.slider.index') }}">Slider</a></li>
+          <li class="{{ setActive(['admin.slider.*']) }}"><a class="nav-link" href="{{ route('admin.home-page-setting') }}">Home Page Setting</a></li>
         </ul>
       </li>
-          <li><a class="nav-link" href="{{ route('admin.setting.index') }}"><i class="far fa-square"></i> <span>Settings</span></a></li>
+          <li><a class="nav-link" href="{{ route('admin.setting.index') }}"><i class="far fa-square"></i> <span>Cài đặt chung</span></a></li>
       {{-- <li class="dropdown">
         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
         <ul class="dropdown-menu">

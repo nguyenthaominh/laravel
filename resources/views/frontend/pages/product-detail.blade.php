@@ -151,11 +151,11 @@
           <div class="container">
               <div class="row">
                   <div class="col-12">
-                      <h4>products details</h4>
+                      <h4>Chi tiết sản phẩm</h4>
                       <ul>
-                          <li><a href="#">home</a></li>
-                          <li><a href="#">peoduct</a></li>
-                          <li><a href="#">product details</a></li>
+                          <li><a href="{{ route('home') }}">Trang chủ</a></li>
+                          <li><a href="#">Sản phẩm</a></li>
+                          <li><a href="#">Chi tiết sản phẩm</a></li>
                       </ul>
                   </div>
               </div>
@@ -206,9 +206,9 @@
                       <div class="wsus__pro_details_text">
                           <a class="title" href="javascript:;">{{$product->name  }}</a>
                           @if($product->qty>0)
-                            <p class="wsus__stock_area"><span class="in_stock">in stock</span> ({{ $product->qty }} item)</p>
+                            <p class="wsus__stock_area"><span class="in_stock">in stock</span> ({{ $product->qty }} sản phẩm)</p>
                           @elseif ($product->qty==0)
-                          <p class="wsus__stock_area"><span class="in_stock">stock out</span> ({{ $product->qty }} item)</p>
+                          <p class="wsus__stock_area"><span class="in_stock">stock out</span> ({{ $product->qty }} sản phẩm)</p>
                           @endif
                           @if(checkDiscount($product))
                             <h4>{{ $settings->currency_icon }}{{$product->offer_price}} <del>{{ $settings->currency_icon }}{{$product->price}}</del></h4>
@@ -246,7 +246,7 @@
                                     </div>
                                 </div>
                                 <div class="wsus__quentity">
-                                    <h5>quentity :</h5>
+                                    <h5>Số lượng :</h5>
                                     <div class="select_number">
                                         <input class="number_area" name="qty" type="text" min="1" max="100" value="1" />
                                     </div>
@@ -259,7 +259,7 @@
                                     <li><a href="#"><i class="far fa-random"></i></a></li>
                                 </ul>
                         </form>
-                          <p class="brand_model"><span>brand :</span> {{ $product->brand->name }}</p>                  
+                          <p class="brand_model"><span>Thương hiệu :</span> {{ $product->brand->name }}</p>                  
                       </div>
                   </div>
                   <div class="col-xl-3 col-md-12 mt-md-5 mt-lg-0">
@@ -268,32 +268,32 @@
                               <li>
                                   <span><i class="fal fa-truck"></i></span>
                                   <div class="text">
-                                      <h4>Return Available</h4>
+                                      <h4>Vận chuyển nhanh chóng</h4>
                                       <!-- <p>Lorem Ipsum is simply dummy text of the printing</p> -->
                                   </div>
                               </li>
                               <li>
                                   <span><i class="far fa-shield-check"></i></span>
                                   <div class="text">
-                                      <h4>Secure Payment</h4>
+                                      <h4>Thanh toán an toàn</h4>
                                       <!-- <p>Lorem Ipsum is simply dummy text of the printing</p> -->
                                   </div>
                               </li>
                               <li>
                                   <span><i class="fal fa-envelope-open-dollar"></i></span>
                                   <div class="text">
-                                      <h4>Warranty Available</h4>
+                                      <h4>Chế độ bảo hành tốt</h4>
                                       <!-- <p>Lorem Ipsum is simply dummy text of the printing</p> -->
                                   </div>
                               </li>
                           </ul>
                           <div class="wsus__det_sidebar_banner">
-                              <img src="images/blog_1.jpg" alt="banner" class="img-fluid w-100">
+                              <img src="{{ asset('frontend/images/blog_1.jpg') }}" alt="banner" class="img-fluid w-100">
                               <div class="wsus__det_sidebar_banner_text_overlay">
                                   <div class="wsus__det_sidebar_banner_text">
                                       <p>Black Friday Sale</p>
                                       <h4>Up To 70% Off</h4>
-                                      <a href="#" class="common_btn">shope now</a>
+                                      <a href="#" class="common_btn">shop now</a>
                                   </div>
                               </div>
                           </div>
@@ -310,18 +310,18 @@
                               <li class="nav-item" role="presentation">
                                   <button class="nav-link active" id="pills-home-tab7" data-bs-toggle="pill"
                                       data-bs-target="#pills-home22" type="button" role="tab"
-                                      aria-controls="pills-home" aria-selected="true">Description</button>
+                                      aria-controls="pills-home" aria-selected="true">Mô tả sản phẩm</button>
                               </li>
                               <li class="nav-item" role="presentation">
                                   <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
                                       data-bs-target="#pills-contact" type="button" role="tab"
-                                      aria-controls="pills-contact" aria-selected="false">Vendor Info</button>
+                                      aria-controls="pills-contact" aria-selected="false">Thông tin cửa hàng</button>
                               </li>
-                              <li class="nav-item" role="presentation">
+                              {{-- <li class="nav-item" role="presentation">
                                   <button class="nav-link" id="pills-contact-tab2" data-bs-toggle="pill"
                                       data-bs-target="#pills-contact2" type="button" role="tab"
-                                      aria-controls="pills-contact2" aria-selected="false">Reviews</button>
-                              </li>
+                                      aria-controls="pills-contact2" aria-selected="false">Đánh ía</button>
+                              </li> --}}
                           </ul>
                           <div class="tab-content" id="pills-tabContent4">
                               <div class="tab-pane fade  show active " id="pills-home22" role="tabpanel"
@@ -356,9 +356,9 @@
                                                       <i class="fas fa-star"></i>
                                                       <span>(41 review)</span>
                                                   </p>
-                                                  <p><span>Store Name:</span> {{ $product->vendor->shop_name }}</p>
-                                                  <p><span>Address:</span> {{ $product->vendor->address }}</p>
-                                                  <p><span>Phone:</span>  {{ $product->vendor->phone }}</p>
+                                                  <p><span>Tên cửa hàng:</span> {{ $product->vendor->shop_name }}</p>
+                                                  <p><span>Địa chỉ:</span> {{ $product->vendor->address }}</p>
+                                                  <p><span>Điện thoại:</span>  {{ $product->vendor->phone }}</p>
                                                   <p><span>mail:</span> {{ $product->vendor->email }}</p>
                                                   <a href="vendor_details.html" class="see_btn">visit store</a>
                                               </div>
@@ -371,7 +371,7 @@
                                       </div>
                                   </div>
                               </div>
-                              <div class="tab-pane fade" id="pills-contact2" role="tabpanel"
+                              {{-- <div class="tab-pane fade" id="pills-contact2" role="tabpanel"
                                   aria-labelledby="pills-contact-tab2">
                                   <div class="wsus__pro_det_review">
                                       <div class="wsus__pro_det_review_single">
@@ -541,7 +541,7 @@
                                           </div>
                                       </div>
                                   </div>
-                              </div>
+                              </div> --}}
                           </div>
                       </div>
                   </div>

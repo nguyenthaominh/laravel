@@ -33,9 +33,9 @@ class CartController extends Controller
 
         // check product quantity
         if($product->qty === 0){
-            return response(['status' => 'error', 'message' => 'Product stock out']);
+            return response(['status' => 'error', 'message' => 'Đã hết hàng']);
         }elseif($product->qty <$request->qty){
-            return response(['status' => 'error', 'message' => 'Quantity not available in our stock']);
+            return response(['status' => 'error', 'message' => 'Số lượng hàng không đủ']);
         }
 
         $variants = [];
@@ -73,7 +73,7 @@ class CartController extends Controller
 
         Cart::add($cartData);
 
-        return response(['status' => 'success', 'message' => 'Added to cart successfully!']);
+        return response(['status' => 'success', 'message' => 'Đã thêm vào giỏ hàng thành công!']);
     }
    
     public function updateProductQty(Request $request)
@@ -82,15 +82,15 @@ class CartController extends Controller
         $product = Product::findOrFail($productId);
         // check product quantity
         if($product->qty === 0){
-            return response(['status' => 'error', 'message' => 'Product stock out']);
+            return response(['status' => 'error', 'message' => 'Sản phẩm đã hết hàng!']);
         }elseif($product->qty < $request->quantity){
-            return response(['status' => 'error', 'message' => 'Quantity not available in our stock']);
+            return response(['status' => 'error', 'message' => 'Số lượng hàng không đủ']);
         }
 
         Cart::update($request->rowId, $request->quantity);
         $productTotal = $this->getProductTotal($request->rowId);
 
-        return response(['status' => 'success', 'message' => 'Product Quantity Updated!', 'product_total' => $productTotal]);
+        return response(['status' => 'success', 'message' => 'Đã cập nhập số lượng sản thành công!', 'product_total' => $productTotal]);
     }
     /** get product total */
     public function getProductTotal($rowId)
@@ -112,12 +112,12 @@ class CartController extends Controller
     public function clearCart()
     {
         Cart::destroy();
-        return response(['status'=>'success','message'=>'Cart cleared successfully']);
+        return response(['status'=>'success','message'=>'Xóa giỏ hàng thành công!']);
     }
     public function removeProduct($rowId)
     {
         Cart::remove($rowId);
-        toastr('Product removed successfully!','success','Success');
+        toastr('Đã xóa sản phẩm thành công!','success','Success');
         return redirect()->back();
     }
     public function getCartCount()
@@ -134,7 +134,7 @@ class CartController extends Controller
     public function removeSidebarProduct(Request $request)
     {
         Cart::remove($request->rowId);
-        return response(['status'=>'success','message'=>'Product removed successfully']);
+        return response(['status'=>'success','message'=>'Đã xóa sản phẩm thành công!']);
     }
     public function applyCoupon(Request $request)
     { 
@@ -145,11 +145,11 @@ class CartController extends Controller
         $coupon = Coupon::where(['code' => $request->coupon_code, 'status' => 1])->first();
 
         if($coupon === null){
-            return response(['status' => 'error', 'message' => 'Coupon not exist!']);
+            return response(['status' => 'error', 'message' => 'Phiếu giảm giá không tồn tại!']);
         }elseif($coupon->start_date > date('Y-m-d')){
-            return response(['status' => 'error', 'message' => 'Coupon not exist!']);
+            return response(['status' => 'error', 'message' => 'Phiếu giảm giá không tồn tại!']);
         }elseif($coupon->end_date < date('Y-m-d')){
-            return response(['status' => 'error', 'message' => 'Coupon is expired']);
+            return response(['status' => 'error', 'message' => 'Phiếu giảm giá đã hết hạn']);
         }elseif($coupon->total_used >= $coupon->quantity){
             return response(['status' => 'error', 'message' => 'you can not apply this coupon']);
         }
@@ -170,7 +170,7 @@ class CartController extends Controller
             ]);
         }
     
-        return response(['status' => 'success', 'message' => 'Coupon applied successfully!']);
+        return response(['status' => 'success', 'message' => 'Đã áp dụng phiếu giảm giá thành công!']);
     }
      /** Calculate coupon discount */
      public function couponCalculation()

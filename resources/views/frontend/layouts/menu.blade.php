@@ -45,8 +45,8 @@
 
                   <ul class="wsus__menu_item">
                       <li><a class="active" href="{{ url('/') }}">home</a></li>
-                      <li><a href="product_grid_view.html">shop <i class="fas fa-caret-down"></i></a>
-                          <div class="wsus__mega_menu">
+                      {{-- <li><a href="product_grid_view.html">shop <i class="fas fa-caret-down"></i></a> --}}
+                          {{-- <div class="wsus__mega_menu">
                               <div class="row">
                                   <div class="col-xl-3 col-lg-3">
                                       <div class="wsus__mega_menu_colum">
@@ -111,9 +111,9 @@
                               </div>
                           </div>
                       </li>
-                      <li><a href="vendor.html">vendor</a></li>
+                      <li><a href="vendor.html">vendor</a></li> --}}
                       <li><a href="blog.html">blog</a></li>
-                      <li><a href="daily_deals.html">campain</a></li>
+                      {{-- <li><a href="daily_deals.html">campain</a></li>
                       <li class="wsus__relative_li"><a href="#">pages <i class="fas fa-caret-down"></i></a>
                           <ul class="wsus__menu_droapdown">
                               <li><a href="404.html">404</a></li>
@@ -130,14 +130,14 @@
                               <li><a href="product_category.html">product category</a></li>
                               <li><a href="brands.html">brands</a></li>
                           </ul>
-                      </li>
-                      <li><a href="track_order.html">track order</a></li>
-                      <li><a href="daily_deals.html">daily deals</a></li>
+                      </li> --}}
+                      {{-- <li><a href="track_order.html">track order</a></li>
+                      <li><a href="daily_deals.html">daily deals</a></li> --}}
                   </ul>
                   <ul class="wsus__menu_item wsus__menu_item_right">
-                      <li><a href="contact.html">contact</a></li>
-                      <li><a href="dsahboard.html">my account</a></li>
-                      <li><a href="{{ route('login') }}">login</a></li>
+                      <li><a href="contact.html">Liên hệ</a></li>
+                      <li><a href="{{ route('login') }}">Tài khoản</a></li>
+                      <li><a href="{{ route('login') }}">Đăng nhập</a></li>
                   </ul>
               </div>
           </div>
