@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Backend\PaypalSettingController;
 use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Backend\VendorController;
+use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -11,6 +13,7 @@ use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\Frontend\CheckOutController;
+use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -62,7 +65,16 @@ Route::get('cart/sidebar-product-total',[CartController::class,'cartTotal'])->na
 Route::get('apply-coupon',[CartController::class,'applyCoupon'])->name('apply-coupon');
 Route::get('coupon-calculation',[CartController::class,'couponCalculation'])->name('coupon-calculation');
 
+/** blog routes */
+Route::get('blog-details/{slug}', [BlogController::class, 'blogDetails'])->name('blog-details');
+Route::get('blog', [BlogController::class, 'blog'])->name('blog');
 
+/**contact */
+Route::get('contact', [ContactController::class, 'index'])->name('contact');
+/**About */
+Route::get('about', [AboutController::class, 'index'])->name('about');
+/** blog comment routes */
+Route::post('blog-comment',[BlogController::class,'comment'])->name('blog-comment');
 
 Route::get('/dashboard', function () {
     

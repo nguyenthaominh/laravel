@@ -155,18 +155,18 @@
     <script src="{{ asset('frontend/js/main.js') }}"></script>
 
     <script>
-    @if ($errors->any())
-            @foreach ($errors->all() as $error )
-            toastr.error("{{$error}}")
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                toastr.error("{{$error}}")
             @endforeach
-          @endif
+        @endif
     </script>
     <script>
         $(document).ready(function(){
             $('.auto_click').click();
         })
     </script>
-     @include('frontend.layouts.scripts');
+    @include('frontend.layouts.scripts')
     @stack('scripts')
 </body>
 

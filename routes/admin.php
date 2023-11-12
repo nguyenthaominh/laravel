@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminVendorProfileController;
+use App\Http\Controllers\Backend\BlogCategoryController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CategoryController;
@@ -125,6 +127,15 @@ Route::put('popular-category-section', [HomePageSettingController::class, 'updat
 Route::put('product-slider-section-one', [HomePageSettingController::class, 'updateProductSliderSectionOne'])->name('product-slider-section-one');
 Route::put('product-slider-section-two', [HomePageSettingController::class, 'updateProductSliderSectionTwo'])->name('product-slider-section-two');
 Route::put('product-slider-section-three', [HomePageSettingController::class, 'updateProductSliderSectionThree'])->name('product-slider-section-three');
+
+/** Blog routes */
+Route::put('blog-category/status-change', [BlogCategoryController::class, 'changeStatus'])->name('blog-category.status-change');
+Route::resource('blog-category', BlogCategoryController::class);
+
+Route::put('blog/status-change', [BlogController::class, 'changeStatus'])->name('blog.status-change');
+Route::resource('blog', BlogController::class);
+Route::get('blog-comments', [BlogCommentController::class, 'index'])->name('blog-comments.index');
+Route::delete('blog-comments/{id}/destory', [BlogCommentController::class, 'destory'])->name('blog-comments.destory');
 
 /** Payment settings routes */
 Route::get('payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');

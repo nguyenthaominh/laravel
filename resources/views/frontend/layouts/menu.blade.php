@@ -20,31 +20,32 @@
                   </div>
                   <ul class="wsus_menu_cat_item show_home toggle_menu">
                       {{-- <li><a href="#"><i class="fas fa-star"></i> hot promotions</a></li> --}}
-                      @foreach ($categories as $category )      
-                      <li><a class="{{count($category->subCategories)>0?'wsus__droap_arrow':'' }}" href="#"><i class="{{ $category->icon }}"></i> {{ $category->name }} </a>
-                        @if(count($category->subCategories)>0)
-                          <ul class="wsus_menu_cat_droapdown">
-                            @foreach ($category->subCategories as $subCategory  )
-                              <li><a href="#">{{ $subCategory->name }} <i class="{{count($subCategory->childCategories) >0?'fas fa-angle-right':''}}"></i></a>
-                                @if(count($subCategory->childCategories)>0)
-                                  <ul class="wsus__sub_category">
-                                    @foreach ($subCategory->childCategories as $childCategory)
-                                        <li><a href="#">{{$childCategory->name}}</a></li>
-                                    @endforeach
-                                  </ul>
-                                  @endif
-                              </li>
-                              @endforeach  
-                                  </ul>
-                                  @endif
-                              </li>   
+                      @foreach ($categories as $category)
+                      <li><a class="{{count($category->subCategories) > 0 ? 'wsus__droap_arrow' : ''}}" href="{{route('products.index', ['category' => $category->slug])}}"><i class="{{$category->icon}}"></i> {{$category->name}} </a>
+                          @if(count($category->subCategories) > 0)
+                              <ul class="wsus_menu_cat_droapdown">
+                                  @foreach ($category->subCategories as $subCategory)
+                                      <li><a href="{{route('products.index', ['subcategory' => $subCategory->slug])}}">{{$subCategory->name}} <i class="{{count($subCategory->childCategories) > 0 ? 'fas fa-angle-right' : ''}}"></i></a>
+                                          @if(count($subCategory->childCategories) > 0)
+                                          <ul class="wsus__sub_category">
+                                              @foreach ($subCategory->childCategories as $childCategory)
+                                                  <li><a href="{{route('products.index', ['childcategory' => $childCategory->slug])}}">{{$childCategory->name}}</a> </li>
+                                              @endforeach
+                                          </ul>
+                                          @endif
+                                      </li>
+                                  @endforeach
+
+                              </ul>
+                          @endif
+                      </li>
                       @endforeach
 
                       <li><a href="#"><i class="fal fa-gem"></i> View All Categories</a></li>
                   </ul>
 
                   <ul class="wsus__menu_item">
-                      <li><a class="active" href="{{ url('/') }}">home</a></li>
+                      <li><a class="active" href="{{ url('/') }}">Trang chủ</a></li>
                       {{-- <li><a href="product_grid_view.html">shop <i class="fas fa-caret-down"></i></a> --}}
                           {{-- <div class="wsus__mega_menu">
                               <div class="row">
@@ -112,7 +113,8 @@
                           </div>
                       </li>
                       <li><a href="vendor.html">vendor</a></li> --}}
-                      <li><a href="blog.html">blog</a></li>
+                      <li><a href="{{route('blog')}}">Tin tức</a></li>
+                      <li><a href="{{route('about')}}">Giới thiệu</a></li>
                       {{-- <li><a href="daily_deals.html">campain</a></li>
                       <li class="wsus__relative_li"><a href="#">pages <i class="fas fa-caret-down"></i></a>
                           <ul class="wsus__menu_droapdown">
@@ -135,7 +137,7 @@
                       <li><a href="daily_deals.html">daily deals</a></li> --}}
                   </ul>
                   <ul class="wsus__menu_item wsus__menu_item_right">
-                      <li><a href="contact.html">Liên hệ</a></li>
+                      <li><a href="{{ route('contact') }}">Liên hệ</a></li>
                       <li><a href="{{ route('login') }}">Tài khoản</a></li>
                       <li><a href="{{ route('login') }}">Đăng nhập</a></li>
                   </ul>
@@ -153,10 +155,10 @@
 
       <li><a href="compare.html"><i class="far fa-random"></i> </i><span>3</span></a></li>
   </ul>
-  <form>
-      <input type="text" placeholder="Search">
-      <button type="submit"><i class="far fa-search"></i></button>
-  </form>
+  <form action="{{route('products.index')}}">
+    <input type="text" placeholder="Search..." name="search" value="{{request()->search}}">
+    <button type="submit"><i class="far fa-search"></i></button>
+</form>
 
   <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
       <li class="nav-item" role="presentation">
